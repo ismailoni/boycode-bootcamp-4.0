@@ -1,7 +1,6 @@
-const reviews = require('../data/reviews');
-const movies = require('../data/movies');
+const reviews = require('../data/review');
+const movies = require('../data/movie');
 const generateId = require('../utils/generateId');
-const { validationResult } = require('express-validator'); // We will use this in the validation middleware
 
 //function to check if a movie exists
 const movieExists = (movieId) => {
@@ -36,14 +35,10 @@ exports.getReviewById = (req, res, next) => {
 // POST /api/movies/:movieId/reviews - Create a new review for a movie
 exports.createReview = (req, res, next) => {
     const movieId = parseInt(req.params.movieId, 10);
-    const errors = validationResult(req);
 
     // 1. Validate movie and request for body
     if (!movieExists(movieId)) {
         return res.status(404).json({ message: `Cannot create review: Movie with ID ${movieId} not found.` });
-    }
-    if (!errors.isEmpty()) {
-        return res.status(400).json({ errors: errors.array() });
     }
 
     // Create new review object
