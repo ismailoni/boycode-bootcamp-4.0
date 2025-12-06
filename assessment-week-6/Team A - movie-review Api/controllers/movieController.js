@@ -100,7 +100,7 @@ exports.createMovie = (req, res) => {
         genre: req.body.genre,
         year: req.body.year,
         rating: req.body.rating || 0,
-        slug: "${String(req.body.title).toLowerCase().trim().replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '')}-${req.body.year}"
+        slug: `${String(req.body.title).toLowerCase().trim().replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '')}-${req.body.year}`
     };
     results.push(newMovie);
     res.status(201).json(newMovie);
