@@ -1,5 +1,5 @@
-import { sessions } from "../data/sessions";
-import { generateId } from "../utils/generateId.js";
+import  sessions  from "../data/sessions.js";
+import  generateId  from "../utils/generateId.js";
 
 // Get all sessions
 const activeSessions = sessions.filter(session => !session.isDelete);
@@ -37,6 +37,11 @@ export const getSessionById = (req, res) => {
         res.status(404).json({
             status: 'fail',
             message: 'Session not found.'
+        });
+    } else if (session.isDelete === true) {
+        res.status(410).json({
+            status: 'fail',
+            message: 'Session has been deleted.'
         });
     } else {
         res.status(200).json({

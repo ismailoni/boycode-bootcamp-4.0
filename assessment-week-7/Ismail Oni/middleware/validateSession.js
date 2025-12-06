@@ -1,6 +1,6 @@
-import { exercises } from '../data/exercises.js';
+import exercises  from '../data/exercises.js';
 
-const validateSession = (req, res, next) => {
+export const validateSession = (req, res, next) => {
     if (req.body === undefined) {
         return res.status(400).json({
             status: 'fail',
@@ -38,5 +38,3 @@ const validateSession = (req, res, next) => {
     }
     next();
 }
-
-export default validateSession;

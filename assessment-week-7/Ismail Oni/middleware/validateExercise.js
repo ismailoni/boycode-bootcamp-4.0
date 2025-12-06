@@ -1,4 +1,4 @@
-const validateExercise = (req, res, next) => {
+export const validateExercise = (req, res, next) => {
     if (req.body === undefined) {
         return res.status(400).json({
             status: 'fail',
@@ -33,5 +33,3 @@ const validateExercise = (req, res, next) => {
     }
     next();
 }
-
-export default validateExercise;
